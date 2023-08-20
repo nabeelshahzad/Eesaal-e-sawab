@@ -10,43 +10,83 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { root } from "../root/colors";
+
+
+
 const Reset = () => {
-    const [showPassword, setShowPassword] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
+
 
   return (
     <>
-    
+
       <View style={styles.container}>
         <View style={styles.section1}>
           <Image source={require("../../assets/logo/landscapeLogo.png")} />
         </View>
+
         <View style={styles.section2}>
+
           <Text style={styles.headingTitle}>Reset Password</Text>
-        <View style={{width:'80%', }}>
-        <Text style={{color:root.bkackAccent}}>Enter your current and new password</Text>
-        </View>
+
           <View style={styles.inputContainer}>
-          <Ionicons name="user" style={styles.inputIcon} size={18} color={root.primaryColor} />
+            <Ionicons
+              name="lock-closed"
+              style={styles.inputIcon}
+              size={18}
+              color={root.primaryColor}
+            />
             <TextInput
               style={styles.input}
-              placeholder="Email"
-              keyboardType="email-address"
+              placeholder="Password"
+              secureTextEntry={!showPassword}
             />
+            <TouchableOpacity
+              style={styles.showPasswordIcon}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <Ionicons name="eye-off" size={20} color={root.bkackAccent} />
+              ) : (
+                <Ionicons name="eye" size={20} color={root.bkackAccent} />
+              )}
+            </TouchableOpacity>
           </View>
+
+
           <View style={styles.inputContainer}>
-          <Ionicons name="user" style={styles.inputIcon} size={18} color={root.primaryColor} />
+            <Ionicons
+              name="lock-closed"
+              style={styles.inputIcon}
+              size={18}
+              color={root.primaryColor}
+            />
             <TextInput
               style={styles.input}
-              placeholder="Email"
-              keyboardType="email-address"
+              placeholder="Password"
+              secureTextEntry={!showPassword}
             />
+            <TouchableOpacity
+              style={styles.showPasswordIcon}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <Ionicons name="eye-off" size={20} color={root.bkackAccent} />
+              ) : (
+                <Ionicons name="eye" size={20} color={root.bkackAccent} />
+              )}
+            </TouchableOpacity>
           </View>
+
+
+
+
           <View
             style={{
               width: "100%",
               height: "22%",
-            //   borderWidth: 1,
               alignItems: "center",
               marginVertical: "15%",
             }}
@@ -57,7 +97,7 @@ const Reset = () => {
                 navigation.navigate("Login");
               }}
             >
-              <Text style={styles.btnText}>Next</Text>
+              <Text style={styles.btnText}>Update</Text>
             </TouchableOpacity>
             <View
               style={{
@@ -67,9 +107,6 @@ const Reset = () => {
                 marginVertical: 10,
               }}
             >
-              <Text style={{color:root.bkackAccent,}} >Try again with password?</Text>
-              <Text onPress={()=>{navigation.navigate('Login')}} style={{fontWeight:'bold', color:root.primaryColor,fontSize:15}}>Login</Text>
-
             </View>
           </View>
         </View>
@@ -78,6 +115,9 @@ const Reset = () => {
   );
 };
 export default Reset;
+
+
+
 
 const styles = StyleSheet.create({
   container: {

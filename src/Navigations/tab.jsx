@@ -11,6 +11,7 @@ import Reset from "../Screens/Reset";
 import Activity from "../Screens/Activity";
 import Donation from "../Screens/Donation";
 import Counter from "../Screens/Counter";
+import profilePage from "../Screens/profilePage";
 import { root } from "../root/colors";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ const HomeStack = () => (
     <Stack.Screen name="MyActivity" component={MyActivity} />
     <Stack.Screen name="Counter" component={Counter} />
     <Stack.Screen name="Reset" component={Reset} />
+    <Stack.Screen name="profilePage" component={profilePage} />
   </Stack.Navigator>
 );
 

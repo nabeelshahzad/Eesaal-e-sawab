@@ -4,9 +4,14 @@ import { StyleSheet, Text, View } from "react-native";
 import ArchiveActivityScreen from "../component/Archive.jsx";
 import ActiveActivityScreen from "../component/ActiveActivity.jsx";
 import { root } from "../root/colors.jsx";
+
+
 const Tab = createMaterialTopTabNavigator();
 
+
+
 const MyActivity = () => {
+
   return (
     <>
       <Tab.Navigator
@@ -28,8 +33,12 @@ const MyActivity = () => {
   );
 };
 
+
+
 const CustomTabBar = ({ state, descriptors, navigation }) => {
+
   return (
+
     <View style={styles.tabBarContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -57,7 +66,12 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
   );
 };
 
+
+
+
+
 const ArchiveActivity = () => {
+
   return (
     <View style={styles.tabContentContainer}>
       <ArchiveActivityScreen />
@@ -73,6 +87,9 @@ const ActiveActivity = () => {
   );
 };
 
+
+
+
 const styles = StyleSheet.create({
   tabBarContainer: {
     backgroundColor:"white",
@@ -80,7 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 6,
     marginBottom: 0,
-  
   },
   activeTab: {
     flex: 1,
@@ -110,5 +126,7 @@ const styles = StyleSheet.create({
     paddingTop:0,
   },
 });
+
+
 
 export default MyActivity;

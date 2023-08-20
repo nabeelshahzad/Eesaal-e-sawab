@@ -3,9 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import {  useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
 import { root } from "../root/colors";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -13,6 +11,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 
 const { height } = Dimensions.get("window");
+
+
+
 export function DrawerContent(props) {
 
   const navigation = useNavigation();
@@ -39,62 +40,76 @@ export function DrawerContent(props) {
   };
 
   const handleLogout = async () => {
-   
+
   };
+
+
   return (
+
     <View {...props}>
+
       <View style={styles.drawerMain}>
+
         <View style={styles.drawerTop}>
-          <EvilIcons name="user" size={169} color={root.primaryColor} />
-          <Text style={{ fontWeight: "700", fontSize: 20, color:root.primaryColor }}>
+
+          <EvilIcons name="user" size={170} color={root.primaryColor} />
+          <Text style={{ fontWeight: "700", fontSize: 20, color: root.primaryColor }}>
             Huzaifa Usman
           </Text>
-          <Text style={{ fontSize: 13, color:root.primaryColor  }}>
+          <Text style={{ fontSize: 13, color: root.primaryColor }}>
             huzaifa@cloudlabweb.com
           </Text>
         </View>
 
+
         <View style={styles.drawerBottom}>
           <View style={styles.drawerContent}>
-            <View>
-              <TouchableOpacity
-                style={styles.drawerItem}
-                onPress={() => {
-                  navigation.navigate("ProfileBN");
-                }}
-              >
-              
-                <FontAwesome5 name="user-alt" size={20} style={{marginLeft:5, }} color={root.primaryColor} />
-                <Text style={styles.drawerText}>My Profile</Text>
-              </TouchableOpacity>
-            </View>
+
+            <TouchableOpacity style={styles.drawerItem} onPress={() => { navigation.navigate("profilePage"); }}>
+
+              <FontAwesome5 name="user-alt" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
+              <Text style={styles.drawerText}>My Profile</Text>
+
+            </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.drawerItem}
               onPress={() => navigation.navigate("MyActivity")}
             >
-              <MaterialCommunityIcons name="book-edit"  size={20} style={{marginLeft:5, }} color={root.primaryColor} />
+              <MaterialCommunityIcons name="book-edit" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
               <Text style={styles.drawerText}>My Activities</Text>
             </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.drawerItem}
-                onPress={() => {
-                  navigation.navigate("Login");
-                }}
-              >
-                <FontAwesome5 name="hand-holding-heart"  size={20} style={{marginLeft:5,}} color={root.primaryColor}  />
-                <Text style={styles.drawerText}>My Donation</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity
-                style={styles.drawerItem}
-                onPress={() => {
-                  navigation.navigate("Login");
-                }}
-              >
-                <Fontisto name="power" size={20} style={{marginLeft:5, }} color={root.primaryColor}  />
-                <Text style={styles.drawerText}>Logout</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.drawerItem}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              <FontAwesome5 name="hand-holding-heart" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
+              <Text style={styles.drawerText}>My Donation</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.drawerItem}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              <FontAwesome5 name="hand-holding-heart" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
+              <Text style={styles.drawerText}>My Sadqah</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.drawerItem}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              <Fontisto name="power" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
+              <Text style={styles.drawerText}>Logout</Text>
+            </TouchableOpacity>
+
           </View>
         </View>
       </View>
@@ -104,20 +119,24 @@ export function DrawerContent(props) {
   );
 }
 
+
+
+
+
 const styles = StyleSheet.create({
   drawerContent: {
     justifyContent: "center",
     alignContent: "center",
   },
   drawerItem: {
-    borderBottomWidth:1,
-    paddingBottom:12,
-    borderColor:root.bkackAccent,
+    borderBottomWidth: 1,
+    paddingBottom: 12,
+    borderColor: root.bkackAccent,
     alignItems: "center",
     flexDirection: "row",
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginVertical:5,
+    marginVertical: 5,
   },
   drawerText: {
     fontSize: 18,
@@ -130,7 +149,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   drawerTop: {
-    paddingTop:40,
+    paddingTop: 40,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: root.primaryAccent,
@@ -138,9 +157,7 @@ const styles = StyleSheet.create({
   },
   drawerBottom: {
     justifyContent: "center",
-
-    // backgroundColor: root.primaryAccent,
-    height: "70%",
+    height: "60%",
   },
   iconsBlock: {
     display: "flex",

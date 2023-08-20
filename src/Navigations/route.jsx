@@ -9,6 +9,7 @@ import Verification from "../Screens/Verification.jsx";
 import Reset from "../Screens/Reset.jsx";
 import MyDrawer from "./drawer.jsx"
 import Activities from "../Screens/Activities.jsx";
+import profilePage from "../Screens/profilePage";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,8 @@ function Route() {
         <Stack.Screen name="Signup" component={Signup} options={{ headerShadowVisible: false, title: null, headerTransparent: true, }} />
         <Stack.Screen name="Forget" component={Forget} options={{ headerShadowVisible: false, title: null, headerTransparent: true, }}/>
         <Stack.Screen name="Verification" component={Verification} options={{ headerShadowVisible: false, title: null, headerTransparent: true, }}/>
+        <Stack.Screen name="profilePage" component={profilePage} options={{ headerShadowVisible: false, title: null, headerTransparent: true, }}/>
+        <Stack.Screen name="Reset" component={Reset} options={{ headerShadowVisible: false, title: null, headerTransparent: true, }}/>
         <Stack.Screen name="HomeDrawer" component={MyDrawer} options={{ headerShown: false }}/>
         <Stack.Screen name="Activities" component={Activities} options={{ headerShown: false }}/>
       </Stack.Navigator>

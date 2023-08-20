@@ -1,12 +1,11 @@
 import * as React from "react";
 import { StatusBar, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { DrawerActions, NavigationContainer, useNavigation } from "@react-navigation/native";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { Foundation } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { DrawerContent } from "./DrawerContent.jsx";
 import { Image } from "react-native";
-import Activities from "../Screens/Home.jsx";
 import { root } from "../root/colors.jsx";
 import { Ionicons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

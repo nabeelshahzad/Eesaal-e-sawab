@@ -30,6 +30,7 @@ const Login = () => {
           </View>
         </View>
         <View style={styles.section2}>
+
           <Text style={styles.headingTitle}>LOG IN</Text>
           <View style={styles.inputContainer}>
             <Ionicons
@@ -44,6 +45,7 @@ const Login = () => {
               keyboardType="phone-pad"
             />
           </View>
+          
           <View style={styles.inputContainer}>
             <Ionicons
               name="lock-closed"
@@ -67,6 +69,7 @@ const Login = () => {
               )}
             </TouchableOpacity>
           </View>
+
           <View style={{ width: "80%" }}>
             <Text
               onPress={() => {
@@ -119,7 +122,7 @@ const Login = () => {
               >
                 Signup
               </Text>
-              <Text>hello there</Text>
+              
             </View>
           </View>
         </View>

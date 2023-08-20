@@ -3,12 +3,15 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { root } from "../root/colors";
-
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 
 
 
 const JoinActivity2 = (props) => {
+
+    const navigation = useNavigation();
 
     return (
         <>
@@ -29,9 +32,9 @@ const JoinActivity2 = (props) => {
                                 </Text>
                             </View>
                         </View>
-                        <View style={styles.card_Right}>
+                        <TouchableOpacity style={styles.card_Right} onPress={() => {navigation.navigate("Activity")}}>
                             <Text style={styles.joinTxt}>Join</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
 
                 </ScrollView>
@@ -75,10 +78,11 @@ const styles = StyleSheet.create({
         color: root.bkackAccent,
     },
     card_Right: {
-        // borderWidth: 1,
-        width: "20%",
+        width: "57%",
+        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        height: "95%"
     },
     joinTxt: {
         fontSize: 18,

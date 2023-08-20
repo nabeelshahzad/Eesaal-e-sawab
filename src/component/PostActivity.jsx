@@ -85,28 +85,28 @@ const PostActivity = () => {
           </View>
 
 
-          <View style={styles.container}>
-            <View style={styles.radioContainer}>
-              <RadioButton
-                value="option1"
-                status={selectedValue === 'option1' ? 'checked' : 'unchecked'}
-                onPress={() => handleRadioChange('option1')}
-              />
-              <Text>Option 1</Text>
-            </View>
-            <View style={styles.radioContainer}>
-              <RadioButton
-                value="option2"
-                status={selectedValue === 'option2' ? 'checked' : 'unchecked'}
-                onPress={() => handleRadioChange('option2')}
-              />
-              <Text>Option 2</Text>
-            </View>
-          </View>
 
 
         </View>
 
+        <View style={styles.container}>
+          <View style={styles.radioContainer}>
+            <RadioButton
+              value="option1"
+              status={selectedValue === 'option1' ? 'checked' : 'unchecked'}
+              onPress={() => handleRadioChange('option1')}
+            />
+            <Text>Option 1</Text>
+          </View>
+          <View style={styles.radioContainer}>
+            <RadioButton
+              value="option2"
+              status={selectedValue === 'option2' ? 'checked' : 'unchecked'}
+              onPress={() => handleRadioChange('option2')}
+            />
+            <Text>Option 2</Text>
+          </View>
+        </View>
 
       </View>
     </>
@@ -121,7 +121,7 @@ const PostActivity = () => {
 
 const styles = StyleSheet.create({
   main_card: {
-    minHeight: "100%",
+    Height: "100%",
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
@@ -130,9 +130,10 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "95%",
-    minHeight: 600,
+    minHeight: 500,
     alignItems: "center",
     marginTop: 15,
+    borderWidth: 1
   },
   inputContainer: {
     flexDirection: "row",
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "row",
     borderWidth: 1,
-    width: "100%"
+    width: "100%",
   },
   radioContainer: {
     flexDirection: 'row',

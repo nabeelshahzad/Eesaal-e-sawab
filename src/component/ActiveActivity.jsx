@@ -18,14 +18,12 @@ const ActiveActivity = () => {
 
   const navigation = useNavigation();
 
-
   return (
     <>
       <View style={styles.card_wrap}>
-        <ScrollView
-          style={{ minHeight: "100%" }}
-          showsVerticalScrollIndicator={false}
-        >
+
+        <ScrollView style={{ minHeight: "100%" }} showsVerticalScrollIndicator={false} >
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <Text style={styles.card_title}>Surah Kausar</Text>
@@ -89,6 +87,7 @@ const ActiveActivity = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <Text style={styles.card_title}>Dua E Qunoot</Text>
@@ -152,6 +151,7 @@ const ActiveActivity = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <Text style={styles.card_title}>Surah Baqarah</Text>
@@ -215,6 +215,7 @@ const ActiveActivity = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <Text style={styles.card_title}>Durood E Pak</Text>
@@ -278,7 +279,9 @@ const ActiveActivity = () => {
               </View>
             </View>
           </View>
+
         </ScrollView>
+
       </View>
     </>
   );
@@ -331,7 +334,6 @@ const styles = StyleSheet.create({
   participantWrap: {
     paddingHorizontal: 10,
     paddingBottom: 10,
-    // borderWidth:1,
     justifyContent: "space-between",
     flexDirection: "row",
     width: "100%",

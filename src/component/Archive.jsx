@@ -3,7 +3,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
@@ -12,15 +11,20 @@ import { root } from "../root/colors";
 import { useNavigation } from "@react-navigation/native";
 import { Fontisto } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+
+
+
 const ArchiveActivityScreen = () => {
+
   const navigation = useNavigation();
+
+
   return (
     <>
       <View style={styles.card_wrap}>
-        <ScrollView
-          style={{ minHeight: "100%" }}
-          showsVerticalScrollIndicator={false}
-        >
+
+        <ScrollView style={{ minHeight: "100%" }} showsVerticalScrollIndicator={false} >
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -90,6 +94,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -160,6 +165,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -230,6 +236,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -300,6 +307,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -370,6 +378,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -440,6 +449,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -510,6 +520,7 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+          
           <View style={styles.card_Child}>
             <View style={styles.card_Left}>
               <FontAwesome
@@ -580,11 +591,17 @@ const ArchiveActivityScreen = () => {
               </View>
             </View>
           </View>
+
         </ScrollView>
+
       </View>
     </>
   );
 };
+
+
+
+
 const styles = StyleSheet.create({
   card_wrap: {
     minHeight: "100%",
@@ -640,5 +657,7 @@ const styles = StyleSheet.create({
     color: root.primaryColor,
   },
 });
+
+
 
 export default ArchiveActivityScreen;

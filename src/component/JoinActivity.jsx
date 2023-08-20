@@ -8,6 +8,7 @@ import JoinActivity2 from "./JoinActivity2";
 
 
 
+
 const JoinActivity = () => {
 
 
@@ -38,9 +39,6 @@ const JoinActivity = () => {
 
 const styles = StyleSheet.create({
   card_wrap: {
-    // flex: 1,
-    // marginBottom: 10,
-    // width: "100%",
     minHeight: "100%",
   },
   card_Child: {

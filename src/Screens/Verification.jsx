@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -16,8 +16,8 @@ import { root } from "../root/colors";
 const Verification = () => {
 
 
-  const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
+
 
   return (
     <>
@@ -46,17 +46,11 @@ const Verification = () => {
             style={{
               width: "100%",
               height: "22%",
-              //   borderWidth: 1,
               alignItems: "center",
               marginVertical: "15%",
             }}
           >
-            <TouchableOpacity
-              style={styles.inputBtn}
-              onPress={() => {
-                navigation.navigate("HomeDrawer");
-              }}
-            >
+            <TouchableOpacity style={styles.inputBtn} onPress={() => { navigation.navigate("HomeDrawer") }} >
               <Text style={styles.btnText}>Verify</Text>
             </TouchableOpacity>
             <View
@@ -77,6 +71,9 @@ const Verification = () => {
     </>
   );
 };
+
+
+
 export default Verification;
 
 
