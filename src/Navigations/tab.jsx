@@ -12,12 +12,16 @@ import Activity from "../Screens/Activity";
 import Donation from "../Screens/Donation";
 import Counter from "../Screens/Counter";
 import profilePage from "../Screens/profilePage";
+import Splash from "../Screens/Splash.jsx";
 import { root } from "../root/colors";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+
+
 const HomeStack = () => (
   <Stack.Navigator initialRouteName="Activities" screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Splash" component={Splash} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Activities" component={Activities} />
     <Stack.Screen name="Activity" component={Activity} />
