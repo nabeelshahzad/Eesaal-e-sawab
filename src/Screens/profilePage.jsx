@@ -27,7 +27,7 @@ const Reset = () => {
 
                 <View style={styles.section1}>
                     <EvilIcons name="user" size={170} />
-                    <TouchableOpacity style={{ width: "60%", height: 50, backgroundColor: "white", borderRadius: 10, justifyContent: "center", paddingLeft: 9, marginTop: 15 }}>
+                    <TouchableOpacity style={{ width: "60%", height: 50, backgroundColor: "white", borderRadius: 10, justifyContent: "center", paddingLeft: 9, marginTop: 15, alignItems: "center" }}>
                         <Text style={{ fontSize: 20 }}>Edit Name</Text>
                         {/* edit icon on left here */}
                     </TouchableOpacity>
@@ -110,14 +110,13 @@ const styles = StyleSheet.create({
     container: {
         height: "100%",
         width: "100%",
-        borderWidth: 9
     },
     section1: {
         height: "50%",
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 2,
-        backgroundColor: "#00B998"
+        backgroundColor: root.primaryColor
     },
     section2: {
         height: 450,

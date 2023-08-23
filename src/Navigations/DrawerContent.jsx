@@ -80,7 +80,7 @@ export function DrawerContent(props) {
               <Text style={styles.drawerText}>My Activities</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.drawerItem}
               onPress={() => {
                 navigation.navigate("Login");
@@ -88,17 +88,17 @@ export function DrawerContent(props) {
             >
               <FontAwesome5 name="hand-holding-heart" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
               <Text style={styles.drawerText}>My Donation</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.drawerItem}
               onPress={() => {
                 navigation.navigate("Login");
               }}
             >
-              <FontAwesome5 name="hand-holding-heart" size={20} style={{ marginLeft: 5, }} color={root.primaryColor} />
+              <FontAwesome5 name="hand-holding-heart" size={20} style={{ marginLeft: 5 }} color={root.primaryColor} />
               <Text style={styles.drawerText}>My Sadqah</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <TouchableOpacity
               style={styles.drawerItem}

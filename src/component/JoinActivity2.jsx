@@ -19,7 +19,9 @@ const JoinActivity2 = (props) => {
                 <ScrollView style={{ Height: '100%' }}>
 
                     <View style={styles.card_Child}>
+
                         <View style={styles.card_Left}>
+
                             <Text style={styles.card_title}>{props.crdtitle}</Text>
                             <View style={{ flexDirection: "row", width: '70%', marginVertical: 10, justifyContent: 'space-around' }}>
                                 <Text style={styles.card_counter}>
@@ -32,6 +34,7 @@ const JoinActivity2 = (props) => {
                                 </Text>
                             </View>
                         </View>
+
                         <TouchableOpacity style={styles.card_Right} onPress={() => {navigation.navigate("Activity")}}>
                             <Text style={styles.joinTxt}>Join</Text>
                         </TouchableOpacity>
@@ -52,22 +55,24 @@ const JoinActivity2 = (props) => {
 const styles = StyleSheet.create({
     card_wrap: {
         Height: "100%",
+        width: "100%",
     },
     card_Child: {
         marginBottom: 10,
         width: "100%",
         minHeight: "18%",
         flexDirection: "row",
+        alignItems: "center",
     },
     card_Left: {
         borderRadius: 10,
         borderWidth: 1,
         borderColor: root.primaryColor,
-        width: "80%",
+        width: "85%",
         minHeight: "18%",
+        backgroundColor: root.primaryAccent,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: root.primaryAccent,
     },
     card_title: {
         color: root.primaryColor,
@@ -78,16 +83,20 @@ const styles = StyleSheet.create({
         color: root.bkackAccent,
     },
     card_Right: {
-        width: "57%",
+        borderRadius: 10,
+        borderWidth: 1,
+        backgroundColor:root.primaryColor ,
+        marginLeft:'6%',
+        width: "40%",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        height: "95%"
+        minHeight:'100%'
     },
     joinTxt: {
         fontSize: 18,
         fontWeight: "bold",
-        color: root.primaryColor,
+        color: root.primaryAccent,
     },
 });
 

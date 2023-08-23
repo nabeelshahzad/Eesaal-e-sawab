@@ -11,6 +11,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const Activities = () => {
 
+  
   return (
     <>
       <Tab.Navigator
@@ -18,15 +19,16 @@ const Activities = () => {
         tabBarOptions={{}}
       >
         <Tab.Screen
-          name="PostActivity"
-          options={{ tabBarLabel: "Post Activity" }}
-          component={PostActivityScreen}
-        />
-        <Tab.Screen
           name="JoinActivity"
           options={{ tabBarLabel: "Join Activity" }}
           component={JoinActivityScreen}
         />
+        <Tab.Screen
+          name="PostActivity"
+          options={{ tabBarLabel: "Post Activity" }}
+          component={PostActivityScreen}
+        />
+
       </Tab.Navigator>
     </>
   );
@@ -120,7 +122,6 @@ const styles = StyleSheet.create({
     color: "white",
     backgroundColor: root.SecondaryColor,
     paddingVertical: 10,
-    // marginLeft: 3,
     margin: 10,
     marginHorizontal: 5,
     marginTop: 2,

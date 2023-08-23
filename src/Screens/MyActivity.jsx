@@ -25,7 +25,7 @@ const MyActivity = () => {
         />
         <Tab.Screen
           name="ArchiveActivity"
-          options={{ tabBarLabel: "Archive Activities" }}
+          options={{ tabBarLabel: "Archived Activities" }}
           component={ArchiveActivity}
         />
       </Tab.Navigator>

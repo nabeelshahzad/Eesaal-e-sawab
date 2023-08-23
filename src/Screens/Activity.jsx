@@ -41,7 +41,7 @@ const Activity = () => {
                 <Text style={styles.boxLeftTx}>Counter</Text>
               </View>
               <View style={styles.boxRight}>
-                <Text style={styles.boxRightTx}>100/12</Text>
+                <Text style={styles.boxRightTx}>12/100</Text>
               </View>
             </View>
             <View style={styles.box}>
@@ -81,7 +81,7 @@ const Activity = () => {
                 <Text style={styles.boxLeftTx}>Participating</Text>
               </View>
               <View style={styles.boxRight}>
-                <Text style={styles.boxRightTx}>10/3</Text>
+                <Text style={styles.boxRightTx}>3/10</Text>
               </View>
             </View>
           </View>
@@ -95,9 +95,6 @@ const Activity = () => {
     </>
   );
 };
-
-
-
 
 
 

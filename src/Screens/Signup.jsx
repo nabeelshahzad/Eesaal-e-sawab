@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from "@react-navigation/native";
+import PhoneInput from "react-native-phone-number-input";
 import { root } from "../root/colors";
-
 
 
 
@@ -14,6 +14,9 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+
 
   const navigation = useNavigation();
 
@@ -57,10 +60,22 @@ const Signup = () => {
             <TextInput style={styles.input} placeholder="Email Address" keyboardType="email-address" />
           </View>
 
-          <View style={styles.inputContainer}>
+
+          {/* <View style={styles.inputContainer}>
             <Ionicons name="md-call" style={styles.inputIcon} size={18} color={root.primaryColor} />
             <TextInput style={styles.input} placeholder="Phone" keyboardType="phone-pad" />
           </View>
+           */}
+
+          <PhoneInput defaultValue = {phoneNumber} defaultCode="PAK" >
+            <TouchableOpacity onPress = {() => {Alert.alert(phoneNumber)}} >
+              <Text>Phone Number</Text>
+            </TouchableOpacity>
+          </PhoneInput>
+
+
+
+
 
           <View style={styles.inputContainer}>
             <Ionicons name="lock-closed" style={styles.inputIcon} size={18} color={root.primaryColor} />

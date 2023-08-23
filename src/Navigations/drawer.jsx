@@ -15,8 +15,12 @@ const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
 
-export default function MyDrawer({  }) {
-const navigation = useNavigation()
+export default function MyDrawer() {
+
+
+const navigation = useNavigation();
+
+
   const headerOptions = {
     headerStyle: {
       backgroundColor: root.primaryColor, // Set the background color to transparent
@@ -24,6 +28,7 @@ const navigation = useNavigation()
     headerTitleStyle: {},
     headerTitleAlign: "center",
     headerLeft: () => (
+
       <TouchableOpacity>
         <Foundation
           name="align-left"
