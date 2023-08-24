@@ -31,6 +31,9 @@ const HomeStack = () => (
   </Stack.Navigator>
 );
 
+
+
+
 function MyTabs() {
 
   return (
@@ -45,7 +48,7 @@ function MyTabs() {
         headerShown: false,
         tabBarStyle: { height: "8%", backgroundColor: root.primaryAccent },
         tabBarHideOnKeyboard: true,
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused}) => {
           let iconName;
           if (route.name === "HomeBN") {
             iconName = "home";
@@ -57,6 +60,7 @@ function MyTabs() {
             iconName = "shopping";
           }
           return (
+
             <View
               style={[
                 styles.tabBarIconContainer,
@@ -80,6 +84,9 @@ function MyTabs() {
   );
 }
 
+
+
+
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: "#FFFFFF",
@@ -98,5 +105,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
   },
 });
+
+
+
 
 export default MyTabs;

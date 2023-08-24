@@ -63,6 +63,7 @@ const PostActivity = () => {
     console.log(value)
   };
 
+  
   const handleNumberChange = (value) => {
     setSelectedNumber(value);
   };
@@ -122,19 +123,22 @@ const PostActivity = () => {
             <TextInput style={{ borderWidth: 2, height: 89, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="text-phone-pad" />
           </View>
 
-
+         
+          <View style={styles.inputContainerNumber}>
+            <Picker selectedValue={selectedNumber} onValueChange={handleNumberChange} style={styles.picker} >
+              {numberOptions.map((number) => (
+                <Picker.Item key={number.value} label={number.label} value={number.value} style={{ fontSize: 20 }} />
+              ))}
+            </Picker>
+          </View>
 
 
 
           {selectedEvent === 'QK' ? (
-            <View style={{ width: "100%", marginTop: 30 }}>
-              <Text style={{ fontSize: 15, marginLeft: 5, fontWeight: "bold" }}>Counter</Text>
-              <TextInput style={{ borderWidth: 2, height: 69, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="phone-pad" />
-            </View>
 
-          ) : (
 
             <View style={styles.inputContainerNumber}>
+
               <Picker selectedValue={selectedNumber} onValueChange={handleNumberChange} style={styles.picker} >
                 {numberOptions.map((number) => (
                   <Picker.Item key={number.value} label={number.label} value={number.value} style={{ fontSize: 20 }} />
@@ -142,28 +146,36 @@ const PostActivity = () => {
               </Picker>
             </View>
 
+
+          ) : (
+
+            <View style={{ width: "100%", marginTop: 30 }}>
+              <Text style={{ fontSize: 15, marginLeft: 5, fontWeight: "bold" }}>Counter</Text>
+              <TextInput style={{ borderWidth: 2, height: 69, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="phone-pad" />
+            </View>
+
           )}
 
-<View style={styles.radioContainerUltra}>
-      <View style={styles.radioContainer}>
-        <RadioButton
-          value="public"
-          status={selectedValue === 'public' ? 'checked' : 'unchecked'}
-          onPress={() => handleRadioChange('public')}
-        />
-        <Text style={{ fontSize: 20, paddingBottom: 5, fontWeight: "bold", color: root.primaryColor }}>Public</Text>
-      </View>
-      <View style={styles.radioContainer}>
-        <RadioButton
-          value="private"
-          status={selectedValue === 'private' ? 'checked' : 'unchecked'}
-          onPress={() => handleRadioChange('private')}
-        />
-        <Text style={{ fontSize: 20, paddingBottom: 5, fontWeight: "bold", color: root.primaryColor }}>Private</Text>
-      </View>
-    </View>
-      </View>
+          <View style={styles.radioContainerUltra}>
+            <View style={styles.radioContainer}>
+              <RadioButton
+                value="public"
+                status={selectedValue === 'public' ? 'checked' : 'unchecked'}
+                onPress={() => handleRadioChange('public')}
+              />
+              <Text style={{ fontSize: 20, paddingBottom: 5, fontWeight: "bold", color: root.primaryColor }}>Public</Text>
+            </View>
+            <View style={styles.radioContainer}>
+              <RadioButton
+                value="private"
+                status={selectedValue === 'private' ? 'checked' : 'unchecked'}
+                onPress={() => handleRadioChange('private')}
+              />
+              <Text style={{ fontSize: 20, paddingBottom: 5, fontWeight: "bold", color: root.primaryColor }}>Private</Text>
+            </View>
+          </View>
         </View>
+      </View>
 
 
     </>
@@ -182,7 +194,6 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
-    // borderWidth: 1
 
   },
   card: {
@@ -190,7 +201,6 @@ const styles = StyleSheet.create({
     Height: 500,
     alignItems: "center",
     marginTop: 15,
-    // borderWidth: 2
   },
   inputContainer: {
     flexDirection: "row",
@@ -204,7 +214,7 @@ const styles = StyleSheet.create({
 
   },
   inputContainerNumber: {
-    marginTop:25,
+    marginTop: 25,
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
@@ -212,7 +222,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderColor: root.primaryColor,
     height: "9%",
-    // minHeight: 60,
 
   },
   picker: {
@@ -243,11 +252,11 @@ const styles = StyleSheet.create({
     width: "95%",
     alignItems: "flex-end",
   },
-  radioContainerUltra :{
-    width:'100%',
-    marginTop:20,
-    flexDirection:"row",
-    justifyContent:"space-around"
+  radioContainerUltra: {
+    width: '100%',
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   radioContainer: {
     flexDirection: 'row',

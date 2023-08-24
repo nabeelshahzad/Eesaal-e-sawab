@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from '@react-native-picker/picker';
@@ -14,7 +14,12 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [fname, setFName] = useState("");
+  const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [country, setCountry] = useState("");
+  
 
 
 
@@ -31,6 +36,12 @@ const Signup = () => {
 
   const handleCountryChange = (value) => {
     setSelectedCountry(value);
+  };
+
+  const SignUp = () => {
+
+    let userDetails = {fname, email, phoneNumber, password, country};
+    console.warn(userDetails);
   };
 
 
@@ -52,12 +63,12 @@ const Signup = () => {
 
           <View style={styles.inputContainer}>
             <Ionicons name="person" style={styles.inputIcon} size={18} color={root.primaryColor} />
-            <TextInput style={styles.input} placeholder="Full Name" keyboardType="name-phone-pad" />
+            <TextInput style={styles.input} placeholder="Full Name" value={fname} onChangeText = {(e) => setFName(e.target.value)}  keyboardType="name-phone-pad" />
           </View>
 
           <View style={styles.inputContainer}>
             <Ionicons name="mail" style={styles.inputIcon} size={18} color={root.primaryColor} />
-            <TextInput style={styles.input} placeholder="Email Address" keyboardType="email-address" />
+            <TextInput style={styles.input} placeholder="Email Address" value={email} onChangeText = {(e) => setEmail(e.target.value)}  keyboardType="email-address" />
           </View>
 
 
@@ -67,9 +78,10 @@ const Signup = () => {
           </View>
            */}
 
-          <PhoneInput defaultValue = {phoneNumber} defaultCode="PAK" >
-            <TouchableOpacity onPress = {() => {Alert.alert(phoneNumber)}} >
-              <Text>Phone Number</Text>
+
+          <PhoneInput defaultValue = {phoneNumber} value={phoneNumber} onChangeText = {(e) => setPhoneNumber(e.target.value)}  defaultCode="PK" onChangeTextTextFormattedText={(text) => {setPhoneNumber(text)}}  containerStyle = {styles.inputContactContainer} >
+            <TouchableOpacity onPress = {() => {Alert.alert(phoneNumber)}} style = {{ width: 50 }}  >
+              <Text >Phone Number</Text>
             </TouchableOpacity>
           </PhoneInput>
 
@@ -83,6 +95,8 @@ const Signup = () => {
               style={styles.input}
               placeholder="Password"
               secureTextEntry={!showPassword}
+              value={password}
+              onChangeText = {(e) => setPassword(e.target.value)} 
             />
             <TouchableOpacity
               style={styles.showPasswordIcon}
@@ -102,6 +116,8 @@ const Signup = () => {
               selectedValue={selectedCountry}
               onValueChange={handleCountryChange}
               style={styles.picker}
+              value={country}
+              onChangeText = {(e) => setCountry(e.target.value)} 
             >
               {countryOptions.map((country) => (
                 <Picker.Item key={country.value} label={country.label} value={country.value} />
@@ -119,9 +135,7 @@ const Signup = () => {
           >
             <TouchableOpacity
               style={styles.inputBtn}
-              onPress={() => {
-                navigation.navigate("Verification");
-              }}
+              onPress={SignUp}
             >
               <Text style={styles.btnText}>SIGN UP</Text>
             </TouchableOpacity>
@@ -171,7 +185,6 @@ const styles = StyleSheet.create({
   },
   box: {
     margin: 5,
-    borderRadius: 0,
     justifyContent: "center",
     alignItems: "center",
     width: 160,
@@ -180,7 +193,7 @@ const styles = StyleSheet.create({
   headingTitle: {
     fontWeight: "bold",
     fontSize: 30,
-    marginVertical: "2%",
+    marginVertical: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -193,6 +206,18 @@ const styles = StyleSheet.create({
     height: "9%",
     minHeight: 45,
     marginVertical: "2%",
+  },
+  inputContactContainer: {
+    width: "85%",
+    borderWidth: 2,
+    borderColor: root.primaryColor,
+    borderRadius: 90,
+    height: 59,
+    minHeight: 45,
+    marginVertical: "2%",
+    // backgroundColor: "white",
+    // backgroundColor: "transparent",
+    paddingRight: 24
   },
   inputIcon: {
     width: 20,
