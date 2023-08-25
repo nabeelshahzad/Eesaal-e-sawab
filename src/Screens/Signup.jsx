@@ -5,6 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from "@react-navigation/native";
 import PhoneInput from "react-native-phone-number-input";
 import { root } from "../root/colors";
+import axios from 'axios';
 
 
 
@@ -18,8 +19,9 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [country, setCountry] = useState("");
-  
+  const [otp, setOtp] = useState('');
+
+
 
 
 
@@ -38,11 +40,56 @@ const Signup = () => {
     setSelectedCountry(value);
   };
 
+
+  const handleName = (value) => {
+    setFName(value);
+  };
+
+  const handleEmail = (value) => {
+    setEmail(value);
+  };
+
+  const handlePhoneNumber = (value) => {
+    setPhoneNumber(value);
+  };
+
+  const handlePassword = (value) => {
+    setPassword(value);
+  };
+
+
   const SignUp = () => {
 
-    let userDetails = {fname, email, phoneNumber, password, country};
-    console.warn(userDetails);
+    // console.log(fname, email, phoneNumber, password, selectedCountry);
+
+
+    const userData = {
+      fname,
+      email,
+      phoneNumber,
+      password,
+      selectedCountry
+
+    };
+
+    // Make a POST request using Axios
+    axios.post('https://example.com/api/signup', userData)
+      .then(response => {
+        console.log('Sign-up successful!', response.data);
+
+        // Assuming the response contains the OTP field
+        const responseOtp = response.data.otp;
+        setOtp(responseOtp);
+      })
+      .catch(error => {
+        console.error('Sign-up failed:', error);
+      });
   };
+
+
+
+
+
 
 
   return (
@@ -63,28 +110,21 @@ const Signup = () => {
 
           <View style={styles.inputContainer}>
             <Ionicons name="person" style={styles.inputIcon} size={18} color={root.primaryColor} />
-            <TextInput style={styles.input} placeholder="Full Name" value={fname} onChangeText = {(e) => setFName(e.target.value)}  keyboardType="name-phone-pad" />
+            <TextInput style={styles.input} placeholder="Full Name" value = {fname} onChangeText={handleName} keyboardType="name-phone-pad" />
           </View>
 
           <View style={styles.inputContainer}>
             <Ionicons name="mail" style={styles.inputIcon} size={18} color={root.primaryColor} />
-            <TextInput style={styles.input} placeholder="Email Address" value={email} onChangeText = {(e) => setEmail(e.target.value)}  keyboardType="email-address" />
+            <TextInput style={styles.input} placeholder="Email Address" value = {email} onChangeText={handleEmail} keyboardType="email-address" />
           </View>
 
 
-          {/* <View style={styles.inputContainer}>
-            <Ionicons name="md-call" style={styles.inputIcon} size={18} color={root.primaryColor} />
-            <TextInput style={styles.input} placeholder="Phone" keyboardType="phone-pad" />
-          </View>
-           */}
 
-
-          <PhoneInput defaultValue = {phoneNumber} value={phoneNumber} onChangeText = {(e) => setPhoneNumber(e.target.value)}  defaultCode="PK" onChangeTextTextFormattedText={(text) => {setPhoneNumber(text)}}  containerStyle = {styles.inputContactContainer} >
-            <TouchableOpacity onPress = {() => {Alert.alert(phoneNumber)}} style = {{ width: 50 }}  >
+          <PhoneInput value = {phoneNumber} onChangeText={handlePhoneNumber} defaultCode="PK" containerStyle={styles.inputContactContainer} >
+            <TouchableOpacity onPress={() => { Alert.alert(phoneNumber) }} style={{ width: 50 }}  >
               <Text >Phone Number</Text>
             </TouchableOpacity>
           </PhoneInput>
-
 
 
 
@@ -95,8 +135,8 @@ const Signup = () => {
               style={styles.input}
               placeholder="Password"
               secureTextEntry={!showPassword}
-              value={password}
-              onChangeText = {(e) => setPassword(e.target.value)} 
+              onChangeText={handlePassword}
+              value = {password}
             />
             <TouchableOpacity
               style={styles.showPasswordIcon}
@@ -116,8 +156,6 @@ const Signup = () => {
               selectedValue={selectedCountry}
               onValueChange={handleCountryChange}
               style={styles.picker}
-              value={country}
-              onChangeText = {(e) => setCountry(e.target.value)} 
             >
               {countryOptions.map((country) => (
                 <Picker.Item key={country.value} label={country.label} value={country.value} />
@@ -215,8 +253,6 @@ const styles = StyleSheet.create({
     height: 59,
     minHeight: 45,
     marginVertical: "2%",
-    // backgroundColor: "white",
-    // backgroundColor: "transparent",
     paddingRight: 24
   },
   inputIcon: {
