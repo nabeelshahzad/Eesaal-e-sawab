@@ -18,6 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Verification = () => {
 
   const [otp, setOtp] = useState(""); // State to manage the OTP input value
+  const [email, setEmail] = useState("");
 
   const navigation = useNavigation();
 
@@ -29,6 +30,7 @@ const Verification = () => {
   };
 
 
+  // we use this variable to store email from signup page and copy here to get the value from email 
 
   const verifyemail = async() => {
 
@@ -36,8 +38,7 @@ const Verification = () => {
     
   };
 
-
-
+  
   const handleVerify = () => {
 
     // console.log("OTP entered:", otp); // Log the OTP input value to the console
