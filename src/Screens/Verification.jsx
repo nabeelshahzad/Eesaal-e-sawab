@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,13 +10,65 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { root } from "../root/colors";
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
 const Verification = () => {
 
+  const [otp, setOtp] = useState(""); // State to manage the OTP input value
 
   const navigation = useNavigation();
+
+
+
+
+  const handleOtpChange = (value) => {
+    setOtp(value); // Update the state with the OTP input value
+  };
+
+
+
+  const verifyemail = async() => {
+
+    const email = await AsyncStorage.getItem("email");
+    
+  };
+
+
+
+  const handleVerify = () => {
+
+    // console.log("OTP entered:", otp); // Log the OTP input value to the console
+    // navigation.navigate("HomeDrawer");
+
+
+    const userVerify = {
+      email: verifyemail,
+      otp: otp
+    }
+
+    // Send OTP to the backend for verification
+    axios.post('http://localhost:5000/verify', userVerify )
+      .then(response => {
+        console.log('OTP verification response:', response.data);
+
+        // Assuming the response contains a field indicating OTP verification success
+        if (response.data.success) {
+          console.log('OTP matched. Navigating to HomeDrawerScreen');
+          navigation.navigate("HomeDrawer");
+        } else {
+          console.log('OTP did not match');
+          // Handle case where OTP did not match (show error message or something)
+        }
+      })
+      .catch(error => {
+        console.error('Error verifying OTP:', error);
+      });
+  };
+
+
 
 
   return (
@@ -38,6 +90,8 @@ const Verification = () => {
               style={styles.input}
               placeholder="OTP Code"
               keyboardType="decimal-pad"
+              value={otp} // Bind the input value to the state
+              onChangeText={handleOtpChange} // Handle changes to the input value
             />
 
           </View>
@@ -50,7 +104,7 @@ const Verification = () => {
               marginVertical: "15%",
             }}
           >
-            <TouchableOpacity style={styles.inputBtn} onPress={() => { navigation.navigate("HomeDrawer") }} >
+            <TouchableOpacity style={styles.inputBtn} onPress={handleVerify} >
               <Text style={styles.btnText}>Verify</Text>
             </TouchableOpacity>
             <View
