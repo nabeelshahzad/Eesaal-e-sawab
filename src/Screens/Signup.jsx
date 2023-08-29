@@ -6,12 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 import PhoneInput from "react-native-phone-number-input";
 import { root } from "../root/colors";
 import axios from 'axios';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
 
-const Signup =  () => {
+const Signup = () => {
 
 
   const [showPassword, setShowPassword] = useState(false);
@@ -66,26 +65,39 @@ const Signup =  () => {
       password: password
     }
 
+    console.log(userData);
 
-    await AsyncStorage.setItem("email", email);
-    
+
+
+    // axios.defaults.timeout = 5000; // Set a timeout in milliseconds
+    // axios.defaults.headers.post["Content-Type"] = "application/json";
+
+
     // Make a POST request using Axios
-    axios.post('http://192.168.100.6:5000/register', userData)
+    axios.post('http://192.168.100.100:5000/register', userData)
       .then(response => {
-        console.log('Sign-up successful!', response.data);
         if (response.status === 200) {
-          navigation.navigate('Verification')
+          console.log('Sign-up successful!', response.data);
+          navigation.navigate('Verification', { email: email });
         }
       })
       .catch(error => {
         console.error('Sign-up failed:', error);
-        if (error.message) {
-          Alert.alert(error.message)
-          Alert.alert(error.response.data)
-          console.log(error.response.data)
-        }
-        if (error.message) {
-          console.log(error.message)
+
+        if (error.response) {
+          // If the error has a response, it means a response was received from the server
+          console.log('Server responded with:', error.response.data);
+          Alert.alert("Kindly fill all fields");
+          // You can use Alert.alert here to show the error to the user if desired
+          // Alert.alert('Sign-up failed', error.response.data);
+        } else if (error.message) {
+          // If the error has a message, it's a general error message
+          console.log('Error message:', error.message);
+          // Alert.alert('Sign-up failed', 'An error occurred. Please try again.');
+        } else {
+          // If no response or message, it's a more generic error
+          console.log('Error:', error);
+          // Alert.alert('Sign-up failed', 'An error occurred. Please try again.');
         }
       });
   };
@@ -95,6 +107,7 @@ const Signup =  () => {
 
   return (
     <>
+
       <View style={styles.container}>
 
         <View style={styles.section1}>
@@ -202,6 +215,7 @@ const Signup =  () => {
     </>
   );
 };
+
 
 
 

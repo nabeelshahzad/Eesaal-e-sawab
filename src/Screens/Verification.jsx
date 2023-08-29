@@ -6,23 +6,27 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Alert,
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { root } from "../root/colors";
+import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 
 const Verification = () => {
 
   const [otp, setOtp] = useState(""); // State to manage the OTP input value
-  const [email, setEmail] = useState("");
 
+  const route = useRoute();
   const navigation = useNavigation();
 
-
+  
+  let email = route.params.email;
+  console.log(route.params.email);
 
 
   const handleOtpChange = (value) => {
@@ -30,41 +34,35 @@ const Verification = () => {
   };
 
 
-  // we use this variable to store email from signup page and copy here to get the value from email 
-
-  const verifyemail = async() => {
-
-    const email = await AsyncStorage.getItem("email");
-    
-  };
-
-  
   const handleVerify = () => {
-
-    // console.log("OTP entered:", otp); // Log the OTP input value to the console
-    // navigation.navigate("HomeDrawer");
 
 
     const userVerify = {
-      email: verifyemail,
+      email: email,
       otp: otp
     }
 
+    console.log(userVerify);
+
+
+    axios.defaults.timeout = 5000; // Set a timeout in milliseconds
+    axios.defaults.headers.post["Content-Type"] = "application/json"
+
     // Send OTP to the backend for verification
-    axios.post('http://localhost:5000/verify', userVerify )
+    axios.post('http://192.168.100.100:5000/verify', userVerify)
       .then(response => {
         console.log('OTP verification response:', response.data);
 
-        // Assuming the response contains a field indicating OTP verification success
-        if (response.data.success) {
+        if (response.status === 200) {
           console.log('OTP matched. Navigating to HomeDrawerScreen');
           navigation.navigate("HomeDrawer");
-        } else {
-          console.log('OTP did not match');
-          // Handle case where OTP did not match (show error message or something)
         }
       })
       .catch(error => {
+        if (error.response.data) {
+          Alert.alert("error", error.response.data)
+
+        }
         console.error('Error verifying OTP:', error);
       });
   };
