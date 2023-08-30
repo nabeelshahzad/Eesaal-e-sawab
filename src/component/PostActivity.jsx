@@ -63,7 +63,7 @@ const PostActivity = () => {
     console.log(value)
   };
 
-  
+
   const handleNumberChange = (value) => {
     setSelectedNumber(value);
   };
@@ -121,15 +121,6 @@ const PostActivity = () => {
           <View style={{ width: "100%", marginTop: 30 }}>
             <Text style={{ fontSize: 15, marginLeft: 5, fontWeight: "bold" }}>Description</Text>
             <TextInput style={{ borderWidth: 2, height: 89, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="text-phone-pad" />
-          </View>
-
-         
-          <View style={styles.inputContainerNumber}>
-            <Picker selectedValue={selectedNumber} onValueChange={handleNumberChange} style={styles.picker} >
-              {numberOptions.map((number) => (
-                <Picker.Item key={number.value} label={number.label} value={number.value} style={{ fontSize: 20 }} />
-              ))}
-            </Picker>
           </View>
 
 

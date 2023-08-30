@@ -49,7 +49,7 @@ const Verification = () => {
     axios.defaults.headers.post["Content-Type"] = "application/json"
 
     // Send OTP to the backend for verification
-    axios.post('http://192.168.100.100:5000/verify', userVerify)
+    axios.post('http://192.168.100.98:5000/verify', userVerify)
       .then(response => {
         console.log('OTP verification response:', response.data);
 

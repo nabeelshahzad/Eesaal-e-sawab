@@ -54,7 +54,7 @@ const Signup = () => {
   };
 
 
-  const SignUp = async () => {
+  const handleSignUp = () => {
 
 
     const userData = {
@@ -74,7 +74,7 @@ const Signup = () => {
 
 
     // Make a POST request using Axios
-    axios.post('http://192.168.100.100:5000/register', userData)
+    axios.post('http://192.168.100.98:5000/register', userData)
       .then(response => {
         if (response.status === 200) {
           console.log('Sign-up successful!', response.data);
@@ -187,7 +187,7 @@ const Signup = () => {
           >
             <TouchableOpacity
               style={styles.inputBtn}
-              onPress={SignUp}
+              onPress={handleSignUp}
             >
               <Text style={styles.btnText}>SIGN UP</Text>
             </TouchableOpacity>
