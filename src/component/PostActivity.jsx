@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { root } from "../root/colors";
 import { Picker } from '@react-native-picker/picker';
 import { RadioButton } from 'react-native-paper';
+import axios from 'axios';
 
 
 
@@ -13,13 +14,15 @@ const PostActivity = () => {
   const [selectedNumber, setSelectedNumber] = useState("");
   const [selectedValue, setSelectedValue] = useState('public');
 
+  const [eventOptions, setEventOptions] = useState([]);
 
 
-  const eventOptions = [
-    { label: "Wazaif", value: "WZ" },
-    { label: "Quran Khuwani", value: "QK" }
-    // ... Add more countries here
-  ];
+
+  // const eventOptions = [
+  //   { label: "Wazaif", value: "WZ" },
+  //   { label: "Quran Khuwani", value: "QK" }
+  //   // ... Add more categories here
+  // ];
 
 
   const numberOptions = [
@@ -74,6 +77,17 @@ const PostActivity = () => {
   };
 
 
+  useEffect (() => {
+    axios.get('http://192.168.100.98:5000/category')
+      .then(response => {
+        setEventOptions(response.data); // Assuming the API response is an array of options
+        console.log(eventOptions);
+      })
+      .catch(error => {
+        console.error('Error fetching event options:', error);
+      });
+  }, []); // The empty array as the second argument ensures the effect runs only once when the component mounts
+
 
   return (
     <>
@@ -81,13 +95,30 @@ const PostActivity = () => {
 
         <View style={styles.card}>
 
-          <View style={styles.inputContainer}>
-            <Picker selectedValue={selectedEvent} onValueChange={handleEventChange} style={styles.picker} >
+        <FlatList
+        data={eventOptions}
+        keyExtractor={(item) => item.name()}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />   
+       
+            {/* {
+              eventOptions.map((item)=>{
+                <li>{item.name} </li>
+              })
+            }
+          */}
+            
+          
+            {/* <Picker selectedValue={selectedEvent} onValueChange={handleEventChange} style={styles.picker} >
               {eventOptions.map((event) => (
                 <Picker.Item key={event.value} label={event.label} value={event.value} style={{ fontSize: 20 }} />
               ))}
-            </Picker>
-          </View>
+            </Picker> */}
+          {/* </View> */}
 
 
           <View style={{ width: "100%", height: "13%", marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
@@ -125,7 +156,7 @@ const PostActivity = () => {
 
 
 
-          {selectedEvent === 'QK' ? (
+          {/* {selectedEvent === 'QK' ? (
 
 
             <View style={styles.inputContainerNumber}>
@@ -145,7 +176,7 @@ const PostActivity = () => {
               <TextInput style={{ borderWidth: 2, height: 69, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="phone-pad" />
             </View>
 
-          )}
+          )} */}
 
           <View style={styles.radioContainerUltra}>
             <View style={styles.radioContainer}>
