@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, DatePickerAndroid, Text, View, TextInput } from "react-native";
 import { root } from "../root/colors";
 import { Picker } from '@react-native-picker/picker';
 import { RadioButton } from 'react-native-paper';
 import axios from 'axios';
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -16,14 +16,13 @@ const PostActivity = () => {
 
   const [eventOptions, setEventOptions] = useState([]);
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
 
-  // const eventOptions = [
-  //   { label: "Wazaif", value: "WZ" },
-  //   { label: "Quran Khuwani", value: "QK" }
-  //   // ... Add more categories here
-  // ];
 
+
+  
 
   const numberOptions = [
     { label: "1", value: "ONE" },
@@ -60,12 +59,12 @@ const PostActivity = () => {
   ];
 
 
-
   const handleEventChange = (value) => {
     setSelectedEvent(value);
-    console.log(value)
-  };
+    // category _id is in this ( selectedEvent ) 
+    console.log(selectedEvent, "selectedEvent")
 
+  };
 
   const handleNumberChange = (value) => {
     setSelectedNumber(value);
@@ -77,11 +76,13 @@ const PostActivity = () => {
   };
 
 
-  useEffect (() => {
+  //it will update the category every time when it refreshes.
+
+  useEffect(() => {
     axios.get('http://192.168.100.98:5000/category')
       .then(response => {
         setEventOptions(response.data); // Assuming the API response is an array of options
-        console.log(eventOptions);
+        console.log("eventOptions", eventOptions);
       })
       .catch(error => {
         console.error('Error fetching event options:', error);
@@ -89,36 +90,32 @@ const PostActivity = () => {
   }, []); // The empty array as the second argument ensures the effect runs only once when the component mounts
 
 
+
   return (
+
     <>
       <View style={styles.main_card}>
 
         <View style={styles.card}>
 
-        <FlatList
-        data={eventOptions}
-        keyExtractor={(item) => item.name()}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.name}</Text>
-          </View>
-        )}
-      />   
-       
-            {/* {
-              eventOptions.map((item)=>{
-                <li>{item.name} </li>
-              })
-            }
-          */}
-            
-          
-            {/* <Picker selectedValue={selectedEvent} onValueChange={handleEventChange} style={styles.picker} >
-              {eventOptions.map((event) => (
-                <Picker.Item key={event.value} label={event.label} value={event.value} style={{ fontSize: 20 }} />
+          <View style={styles.inputContainer}>
+            <Picker
+              selectedValue={selectedEvent}
+              onValueChange={handleEventChange}
+              style={styles.picker}
+            >
+              {/* Initial placeholder message */}
+              <Picker.Item label="Select an option" value="" />
+
+              {/* Mapping through event options */}
+              {eventOptions?.map((data, index) => (
+                <Picker.Item key={data._id} label={data.name} value={data} />
               ))}
-            </Picker> */}
-          {/* </View> */}
+            </Picker>
+          </View>
+
+
+
 
 
           <View style={{ width: "100%", height: "13%", marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
@@ -135,10 +132,20 @@ const PostActivity = () => {
 
             <View style={{ width: "55%" }}>
 
-              <Text style={{ fontSize: 15, marginLeft: 5, fontWeight: "bold", borderRadius: 7 }}>Time Duration</Text>
-
-              <TextInput style={{ borderWidth: 2, height: 59, borderColor: root.primaryColor, textAlign: "center", fontSize: 25, borderRadius: 7 }} keyboardType="phone-pad" />
-
+              {/* <Text style={{ fontSize: 15, marginLeft: 5, fontWeight: "bold" }}>Duration</Text>
+              <TouchableOpacity onPress={showDatePicker} style={styles.input}>
+                <Text style={styles.dateText}>{selectedDate.toDateString()}</Text>
+              </TouchableOpacity>
+              {isDatePickerVisible && (
+                <DatePicker
+                  visible={isDatePickerVisible}
+                  onDismiss={hideDatePicker}
+                  value={selectedDate}
+                  onDateChange={handleDateChange}
+                  mode="time"
+                  style={{ width: '100%' }}
+                />
+              )} */}
             </View>
 
           </View>
@@ -156,7 +163,7 @@ const PostActivity = () => {
 
 
 
-          {/* {selectedEvent === 'QK' ? (
+          {selectedEvent.name === 'QURAN_KHWANI' ? (
 
 
             <View style={styles.inputContainerNumber}>
@@ -176,7 +183,9 @@ const PostActivity = () => {
               <TextInput style={{ borderWidth: 2, height: 69, width: "100%", borderColor: root.primaryColor, paddingLeft: 10, fontSize: 20, borderRadius: 7 }} keyboardType="phone-pad" />
             </View>
 
-          )} */}
+          )}
+
+
 
           <View style={styles.radioContainerUltra}>
             <View style={styles.radioContainer}>
@@ -199,8 +208,8 @@ const PostActivity = () => {
         </View>
       </View>
 
-
     </>
+
   );
 };
 
@@ -287,6 +296,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // color: "root.primarycolor"
   },
+  input: {
+    borderWidth: 2,
+    height: 59,
+    borderColor: root.primaryColor, // Set your desired color here
+    textAlign: 'center',
+    fontSize: 25,
+    borderRadius: 7,
+    justifyContent: 'center',
+  }
 
 });
 

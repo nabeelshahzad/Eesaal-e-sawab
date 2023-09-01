@@ -15,8 +15,6 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-// DESKTOP-A5GFPO6
-// 101822
 
 
 const Login = () => {
@@ -52,26 +50,23 @@ const Login = () => {
       .then(response => {
         if (response.status === 200) {
           console.log('Login successful!', response?.data);
-          // debuggerab yeh async wala chlao zra
-          const token = response?.data?.data?.tokenData; // Assuming the token is received as response.data.tokenData
-          console.log(token);
-          //  khier token milgaya naah, hogaya kaam tumhaara, abh karo token save
-          AsyncStorage.setItem('token', token)
-          .then(() => {
-            console.log('Token saved successfully');
-            console.log(token);
-            Alert.alert('Login successful');
-            navigation.navigate('HomeDrawer');
-          })
 
-          // const blah = AsyncStorage.getItem('token')
-          // console.log('storage token => ', blah)
-          // Alert.alert("Login successfull")
-          // navigation.navigate("HomeDrawer");
+          // save the token by using async storage
+          const token = response?.data?.data?.tokenData; // Assuming the token is received as response.data.tokenData
+          AsyncStorage.setItem('token', token)
+            .then(() => {
+              console.log('Token saved successfully');
+              console.log(token);
+              Alert.alert('Login successful');
+              navigation.navigate('HomeDrawer');
+            });
+
+
         }
       })
       .catch(error => {
         console.error('Login failed:', error);
+        Alert.alert('User Phone or password does not match');
       });
 
   };
